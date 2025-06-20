@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chiński Sklep</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo" onclick="location.href='admin.html'">Twoje Logo</div>
+    <select id="filter" onchange="filterProducts()">
+      <option value="">Wszystkie</option>
+      <option value="best">Best</option>
+      <option value="budżet">Budżet</option>
+    </select>
+  </div>
+
+  <div class="product-list" id="productList"></div>
+
+  <script>
+    const API = "https://twoj-backend.onrender.com"; // ZMIEŃ TO
+
+    async function loadProducts() {
+      const res = await fetch(`${API}/products`);
+      const data = await res.json();
+      window.allProducts = data;
+      render(data);
+    }
+
+    function render(products) {
+      const container = document.getElementById("productList");
+      container.innerHTML = products.map(p => `
+        <div class="product">
+          <img src="${p.image}" alt="Produkt">
+          <h3>${p.name}</h3>
+          <p>${p.desc}</p>
+          <p><b>${p.price} PLN</b></p>
+          <span class="badge">${p.batch}</span>
+        </div>`).join("");
+    }
+
+    function filterProducts() {
+      const val = document.getElementById("filter").value;
+      if (!val) return render(window.allProducts);
+      render(window.allProducts.filter(p => p.batch === val));
+    }
+
+    loadProducts();
+  </script>
+</body>
+</html>

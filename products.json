@@ -1,12 +1,10 @@
 [
   {
-    "name": "Red T-Shirt",
-    "price": 49.99,
-    "category": "T-Shirts",
-    "best": true,
-    "budget": false,
-    "description": "Stylish red t-shirt with a clean cut.",
-    "image": "https://via.placeholder.com/200",
-    "link": "https://example.com/red-shirt"
+    "name": "White Tech T-Shirt",
+    "image": "https://i.imgur.com/example.jpg",
+    "batch": "best",
+    "category": "t-shirts",
+    "description": "High quality cotton with logo",
+    "link": "https://example.com/product1"
   }
 ]

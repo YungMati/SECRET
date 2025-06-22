@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Red T-Shirt",
+    "price": 49.99,
+    "category": "T-Shirts",
+    "best": true,
+    "budget": false
+  },
+  {
+    "name": "Bluetooth Earbuds",
+    "price": 129.99,
+    "category": "Electronics",
+    "best": false,
+    "budget": true
+  }
+]

@@ -1,24 +1,23 @@
 const express = require('express');
-const cors = require('cors');
 const fs = require('fs');
-
 const app = express();
-const PORT = process.env.PORT || 3001;
-
-app.use(cors());
+app.use(express.static('.'));
 app.use(express.json());
 
-app.get('/api/products', (req, res) => {
-  const data = JSON.parse(fs.readFileSync('data.json'));
-  res.json(data);
+app.get('/data.json', (req, res) => {
+  fs.readFile('data.json', (err, data) => {
+    res.json(JSON.parse(data));
+  });
 });
 
-app.post('/api/products', (req, res) => {
-  const data = JSON.parse(fs.readFileSync('data.json'));
-  const newItem = { ...req.body, id: Date.now() };
-  data.push(newItem);
-  fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
-  res.json({ message: 'OK' });
+app.post('/add-product', (req, res) => {
+  fs.readFile('data.json', (err, data) => {
+    const products = JSON.parse(data);
+    products.push(req.body);
+    fs.writeFile('data.json', JSON.stringify(products, null, 2), () => {
+      res.json({ status: "ok" });
+    });
+  });
 });
 
-app.listen(PORT, () => console.log(`Backend na porcie ${PORT}`));
+app.listen(3000, () => console.log('Server running on port 3000'));

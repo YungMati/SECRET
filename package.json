@@ -1,12 +1,17 @@
 {
-  "name": "yung-r3ps",
+  "name": "backend",
   "version": "1.0.0",
-  "main": "server.js",
-  "type": "module",
+  "description": "Backend for products catalog",
+  "main": "app.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
   }
 }

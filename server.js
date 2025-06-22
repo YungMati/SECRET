@@ -1,24 +1,24 @@
 const express = require('express');
-const fs = require('fs');
 const cors = require('cors');
-
 const app = express();
-const PORT = process.env.PORT || 3000;
+const fs = require('fs');
 
 app.use(cors());
 app.use(express.json());
 
 app.get('/products', (req, res) => {
-  const data = fs.readFileSync('./products.json');
+  const data = fs.readFileSync('products.json');
   res.json(JSON.parse(data));
 });
 
-app.post('/add', (req, res) => {
-  const product = req.body;
-  const data = JSON.parse(fs.readFileSync('./products.json'));
-  data.push(product);
-  fs.writeFileSync('./products.json', JSON.stringify(data, null, 2));
-  res.status(201).json({ status: 'ok' });
+app.post('/products', (req, res) => {
+  const products = JSON.parse(fs.readFileSync('products.json'));
+  products.push(req.body);
+  fs.writeFileSync('products.json', JSON.stringify(products, null, 2));
+  res.status(201).json({ success: true });
 });
 
-app.listen(PORT, () => console.log(`API running on ${PORT}`));
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});

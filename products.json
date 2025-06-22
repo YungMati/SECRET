@@ -4,13 +4,9 @@
     "price": 49.99,
     "category": "T-Shirts",
     "best": true,
-    "budget": false
-  },
-  {
-    "name": "Bluetooth Earbuds",
-    "price": 129.99,
-    "category": "Electronics",
-    "best": false,
-    "budget": true
+    "budget": false,
+    "description": "Stylish red t-shirt with a clean cut.",
+    "image": "https://via.placeholder.com/200",
+    "link": "https://example.com/red-shirt"
   }
 ]
